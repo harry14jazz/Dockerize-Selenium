@@ -34,3 +34,5 @@ keyword = "Chelsea FC"
 top_10_results = get_top_10_search_results(keyword, headless=True)
 for idx, result in enumerate(top_10_results, 1):
     print(f"{idx}. {result}")
+
+print('You dun now cuz!')
