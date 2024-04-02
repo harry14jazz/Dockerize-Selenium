@@ -1,0 +1,8 @@
+version: "3"
+services:
+  test:
+    image: harry14jazz/my-selenium-test:latest
+    command: sh -c "python3 2_simple_main.py"
+    working_dir: /app
+    volumes:
+      - .:/app

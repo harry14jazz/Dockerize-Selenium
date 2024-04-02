@@ -1,23 +1,6 @@
-# Use Alpine Linux as the base image
-FROM python:3.9-alpine
-
-# Set the working directory in the container
+FROM alpine:latest
 WORKDIR /app
-
-# Copy the Python script and requirements file into the container
-COPY 2_simple_main.py requirements.txt ./
-
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Install Chromium and chromedriver using apk package manager
-RUN apk add --no-cache \
-    chromium \
-    chromium-chromedriver \
-    unzip
-
-# Set the path for chromedriver
-ENV PATH="/usr/lib/chromium/:${PATH}"
-
-# Run the Python script when the container launches
-CMD ["python", "2_simple_main.py"]
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+	&& apk update\
+	&& apk add --no-cache python3 py3-pip firefox dbus-x11 ttf-freefont curl unzip py3-zstandard geckodriver\
+	&& pip3 install selenium requests selenium-requests selenium-wire
