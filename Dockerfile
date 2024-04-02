@@ -23,4 +23,6 @@ RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
+RUN pip install --upgrade chromedriver-autoinstaller
+
 CMD ["python", "./2_simple_main.py"]
