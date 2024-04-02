@@ -13,10 +13,14 @@ def get_top_10_search_results(keyword, headless=False):
     options = Options()
     if headless:
         options.add_argument("--headless")  # Run in headless mode if specified
+        options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+        chrome_prefs = {}
+        options.experimental_options["prefs"] = chrome_prefs
+        chrome_prefs["profile.default_content_settings"] = {"images": 2}
 
     # Initialize the webdriver
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(options=options)
     # driver = webdriver.Firefox(options=options)
 
     # Open Google and search for the keyword

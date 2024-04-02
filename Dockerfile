@@ -1,28 +1,26 @@
-# Use Alpine Linux as the base image
-FROM python:3.9-alpine
+FROM python:3.9
 
-# Set the working directory in the container
+COPY . /app
 WORKDIR /app
 
-# Copy the Python script and requirements file into the container
-COPY 2_simple_main.py requirements.txt ./
+RUN mkdir __logger
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+# install google chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+RUN apt-get -y update
+RUN apt-get install -y google-chrome-stable
 
-RUN apk update
+# install chromedriver
+RUN apt-get install -yqq unzip
+RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
+RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
-# Install Chromium and chromedriver using apk package manager
-RUN apk add --no-cache \
-    chromium \
-    chromium-chromedriver \
-    unzip
+# set display port to avoid crash
+ENV DISPLAY=:99
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
 
-# Set the path for chromedriver
-ENV PATH="/usr/lib/chromium/:${PATH}"
+RUN pip install -r requirements.txt
 
-# Run the Python script when the container launches
-CMD ["python", "2_simple_main.py"]
+CMD ["python", "./app.py"]
