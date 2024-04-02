@@ -20,4 +20,4 @@ RUN apk add --no-cache \
 ENV PATH="/usr/lib/chromium/:${PATH}"
 
 # Run the Python script when the container launches
-CMD ["python", "script.py"]
+CMD ["python", "2_simple_main.py"]
