@@ -23,4 +23,4 @@ RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "./app.py"]
+CMD ["python", "./2_simple_main.py"]
