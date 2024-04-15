@@ -38,7 +38,7 @@ def turn_on_driver(target_dir):
         driver.quit()
         return 1
 
-def automation(driver, url):
+def automation(driver, url, username, password):
     try:
         print('>>> Access CAT SOS Web')
         driver.get(url)
@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
     if is_active == 0:
         print('>>> Chrome driver is active and running')
-        is_automated = automation(driver, url)
+        is_automated = automation(driver, url, username, password)
         if is_automated == 0:
             print('>>> Checking the downloaded file...')
             created_datetime = os.path.getctime(expected_file)
