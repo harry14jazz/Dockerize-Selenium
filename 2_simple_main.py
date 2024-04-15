@@ -20,8 +20,8 @@ def get_top_10_search_results(keyword, headless=False):
         chrome_prefs["profile.default_content_settings"] = {"images": 2}
 
     # Initialize the webdriver
-    driver = webdriver.Chrome(options=options)
-    # driver = webdriver.Firefox(options=options)
+    # driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     # Open Google and search for the keyword
     driver.get("https://www.google.com/")
