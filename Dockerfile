@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN mkdir __logger
 
-RUN apt-get update && apt-get install wget
+RUN apt-get -y update && apt-get install -y wget
 
 # install google chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
