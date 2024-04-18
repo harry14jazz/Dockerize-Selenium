@@ -145,8 +145,8 @@ if __name__ == "__main__":
     
     ### Target Directory ###
     ### Uncomment one to be used either Dev or Prod
-    target_directory = "/app"
-    expected_file = "/app/sample-extract.xlsx"
+    target_directory = "/app/data"
+    expected_file = "/app/data/sample-extract.xlsx"
 
     # target_directory = "/home/ehazard/cobham/sos_scrapping/results"
     # expected_file = "/home/ehazard/cobham/sos_scrapping/results/sample-extract.xlsx"
