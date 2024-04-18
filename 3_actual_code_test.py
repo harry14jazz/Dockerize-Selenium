@@ -12,7 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 print('>>> SOS Download Data Automated <<<')
-## add for git push
+
 def turn_on_driver(target_dir):
     
     preferences = {
