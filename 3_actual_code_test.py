@@ -45,8 +45,8 @@ def automation(driver, url, username, password):
         print('>>> Web opened')
 
         print(">>> Insert Username then submit")
-        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='signInName']"))).click()
-        driver.find_element(By.ID, "signInName").send_keys(username)
+        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='sign-in-name']"))).click()
+        driver.find_element(By.ID, "sign-in-name").send_keys(username)
         driver.find_element(By.ID, "next").click()
     
         print(">>> Insert Password then submit")
